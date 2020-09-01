@@ -1,0 +1,48 @@
+
+spring:
+  profiles:
+    active: local # 기본적으로 local이 선택된다는 뜻
+  servlet:
+    multipart:
+      file-size-threshold: 1MB
+      location: C:\temp
+      max-file-size: 100MB
+      max-request-size: 100MB
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/be?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+    username: root
+    password:
+mybatis:
+  type-aliases-package: com.sbs.wjxor.be.dto
+server:
+  error:
+    include-exception: true
+    include-stacktrace: always
+    include-message: always
+    include-binding-errors: always
+custom:
+  siteName: 백엔드
+
+---
+
+spring:
+  profiles: local
+server:
+  port: 8085
+
+---
+
+spring:
+  profiles: production
+  servlet:
+    multipart:
+      location: /tmp
+  datasource:
+    username: be
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/be?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
