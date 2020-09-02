@@ -9,4 +9,10 @@
 		ORDER BY
 		id DESC
 	</select>
+
+	<select id="getArticle" resultType="Article">
+		SELECT *
+		FROM article
+		WHERE id = #{id}
+	</select>
 </mapper> 

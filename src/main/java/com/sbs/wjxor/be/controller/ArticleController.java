@@ -15,10 +15,17 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 
-	@RequestMapping("/usr/article/getList")
+	@RequestMapping("/usr/article/getArticles")
 	@ResponseBody
 	public List<Article> getList() {
 		List<Article> articles = articleService.getArticles();
 		return articles;
+	}
+
+	@RequestMapping("/usr/article/getArticle")
+	@ResponseBody
+	public Article getArticle(int id) {
+		Article article = articleService.getArticle(id);
+		return article;
 	}
 }
