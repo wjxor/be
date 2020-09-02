@@ -9,7 +9,7 @@
 		ORDER BY
 		id DESC
 		<if test="limit != null">
-			LIMIT #{limit}
+			LIMIT #{limitFrom}, #{limit}
 		</if>
 	</select>
 

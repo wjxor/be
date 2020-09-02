@@ -23,6 +23,15 @@ public class ArticleController {
 		if (param.get("limit") != null) {
 			int limit = Integer.parseInt((String) param.get("limit"));
 			param.put("limit", limit);
+			param.put("limitFrom", 0);
+		}
+
+		if (param.get("page") != null) {
+			int page = Integer.parseInt((String) param.get("page"));
+			int limit = 10;
+			int limitFrom = (page - 1) * limit;
+			param.put("limit", limit);
+			param.put("limitFrom", limitFrom);
 		}
 
 		List<Article> articles = articleService.getArticles(param);
