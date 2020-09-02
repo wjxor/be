@@ -8,11 +8,15 @@
 		FROM article
 		ORDER BY
 		id DESC
+		<if test="limit != null">
+			LIMIT #{limit}
+		</if>
 	</select>
 
 	<select id="getArticle" resultType="Article">
 		SELECT *
 		FROM article
-		WHERE id = #{id}
+		WHERE id
+		= #{id}
 	</select>
 </mapper> 
