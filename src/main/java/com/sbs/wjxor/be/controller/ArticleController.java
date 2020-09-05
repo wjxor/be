@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.wjxor.be.dto.Article;
+import com.sbs.wjxor.be.dto.ResultData;
 import com.sbs.wjxor.be.service.ArticleService;
 
 @Controller
@@ -19,7 +20,7 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/getArticles")
 	@ResponseBody
-	public List<Article> getArticles(@RequestParam Map<String, Object> param) {
+	public ResultData getArticles(@RequestParam Map<String, Object> param) {
 		if (param.get("limit") != null) {
 			int limit = Integer.parseInt((String) param.get("limit"));
 			param.put("limit", limit);
@@ -35,7 +36,8 @@ public class ArticleController {
 		}
 
 		List<Article> articles = articleService.getArticles(param);
-		return articles;
+
+		return new ResultData("S-1", String.format("총 %d개의 게시물들 입니다.", articles.size()), "articles", articles);
 	}
 
 	@RequestMapping("/usr/article/getArticle")
