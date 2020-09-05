@@ -42,17 +42,17 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
-	public Article getArticle(int id) {
+	public ResultData getArticle(int id) {
 		Article article = articleService.getArticle(id);
-		return article;
+		return new ResultData("S-1", String.format("%d번 게시물 입니다.", id), "article", article);
 	}
 
 	@RequestMapping("/usr/article/doAddArticle")
 	@ResponseBody
-	public String doAddArticle(@RequestParam Map<String, Object> param) {
+	public ResultData doAddArticle(@RequestParam Map<String, Object> param) {
 		param.put("memberId", 1);
 		int id = articleService.addArticle(param);
 
-		return id + "번 게시물이 생성되었습니다.";
+		return new ResultData("S-1", id + "번 게시물이 생성되었습니다.", "id", id);
 	}
 }
