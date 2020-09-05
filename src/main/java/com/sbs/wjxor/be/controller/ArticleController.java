@@ -55,4 +55,17 @@ public class ArticleController {
 
 		return new ResultData("S-1", id + "번 게시물이 생성되었습니다.", "id", id);
 	}
+
+	@RequestMapping("/usr/article/doModifyArticle")
+	@ResponseBody
+	public ResultData doModifyArticle(@RequestParam Map<String, Object> param, int id) {
+
+		if (param.get("boardId") != null) {
+			param.remove("boardId");
+		}
+
+		articleService.modifyArticle(param);
+
+		return new ResultData("S-1", id + "번 게시물이 수정되었습니다.");
+	}
 }

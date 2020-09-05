@@ -30,4 +30,8 @@ public class ArticleService {
 		return id;
 	}
 
+	public void modifyArticle(Map<String, Object> param) {
+		articleDao.modifyArticle(param);
+	}
+
 }

@@ -30,4 +30,20 @@
 		boardId = #{boardId},
 		memberId = #{memberId}
 	</insert>
+
+	<update id="modifyArticle">
+		UPDATE article
+		<set>
+			updateDate = NOW(),
+			<if test="title != null and title != ''">
+				title = #{title},
+			</if>
+			<if test="body != null and body != ''">
+				body = #{body},
+			</if>
+			<if test="boardId != null and boardId != ''">
+				boardId = #{boardId},
+			</if>
+		</set>
+	</update>
 </mapper> 
