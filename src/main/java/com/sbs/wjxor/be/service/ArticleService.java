@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.sbs.wjxor.be.dao.ArticleDao;
 import com.sbs.wjxor.be.dto.Article;
+import com.sbs.wjxor.be.util.CUtil;
 
 @Service
 public class ArticleService {
@@ -21,6 +22,12 @@ public class ArticleService {
 
 	public Article getArticle(int id) {
 		return articleDao.getArticle(id);
+	}
+
+	public int addArticle(Map<String, Object> param) {
+		articleDao.addArticle(param);
+		int id = CUtil.getAsInt(param.get("id"));
+		return id;
 	}
 
 }

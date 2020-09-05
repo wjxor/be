@@ -19,4 +19,15 @@
 		WHERE id
 		= #{id}
 	</select>
+
+	<insert id="addArticle" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO article
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		title =
+		#{title},
+		`body` = #{body},
+		boardId = #{boardId},
+		memberId = #{memberId}
+	</insert>
 </mapper> 

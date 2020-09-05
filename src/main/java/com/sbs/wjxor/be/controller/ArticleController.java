@@ -44,4 +44,13 @@ public class ArticleController {
 		Article article = articleService.getArticle(id);
 		return article;
 	}
+
+	@RequestMapping("/usr/article/doAddArticle")
+	@ResponseBody
+	public String doAddArticle(@RequestParam Map<String, Object> param) {
+		param.put("memberId", 1);
+		int id = articleService.addArticle(param);
+
+		return id + "번 게시물이 생성되었습니다.";
+	}
 }

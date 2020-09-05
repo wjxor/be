@@ -13,4 +13,6 @@ public interface ArticleDao {
 	List<Article> getArticles(Map<String, Object> param);
 
 	Article getArticle(@Param("id") int id);
+
+	void addArticle(Map<String, Object> param);
 }
