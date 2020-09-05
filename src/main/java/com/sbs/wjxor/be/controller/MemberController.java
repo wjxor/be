@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.wjxor.be.dto.Member;
+import com.sbs.wjxor.be.dto.ResultData;
 import com.sbs.wjxor.be.service.MemberService;
 
 @Controller
@@ -19,7 +20,7 @@ public class MemberController {
 
 	@RequestMapping("/usr/member/getMembers")
 	@ResponseBody
-	public List<Member> getMembers(@RequestParam Map<String, Object> param) {
+	public ResultData getMembers(@RequestParam Map<String, Object> param) {
 		if (param.get("limit") != null) {
 			int limit = Integer.parseInt((String) param.get("limit"));
 			param.put("limit", limit);
@@ -35,13 +36,14 @@ public class MemberController {
 		}
 
 		List<Member> members = memberService.getMembers(param);
-		return members;
+
+		return new ResultData("S-1", String.format("총 %d개의 회원 입니다.", members.size()), "members", members);
 	}
 
 	@RequestMapping("/usr/member/getMember")
 	@ResponseBody
-	public Member getMember(int id) {
+	public ResultData getMember(int id) {
 		Member member = memberService.getMember(id);
-		return member;
+		return new ResultData("S-1", String.format("%d번 회원입니다.", id), "member", member);
 	}
 }
